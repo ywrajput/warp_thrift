@@ -2,7 +2,7 @@
 
 import pynvml # type: ignore
 
-def get_gpu_baseline_info(handle):
+def get_gpu_info(handle):
     temperature = pynvml.nvmlDeviceGetTemperature(handle, pynvml.NVML_TEMPERATURE_GPU)
     power_usage = pynvml.nvmlDeviceGetPowerUsage(handle) / 1000
     memory_info = pynvml.nvmlDeviceGetMemoryInfo(handle)

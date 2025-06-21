@@ -11,6 +11,8 @@ def stress_gpu_with_monitoring(handle, duration_seconds=60):
     a = torch.randn((4096, 4096), device=device)
     b = torch.randn((4096, 4096), device=device)
 
+    baseline_temp = pynvml.nvmlDeviceGetTemperature(handle, pynvml.NVML_TEMPERATURE_GPU)
+
     max_temp = -1
     max_power = -1
     last_util = -1 # will change to avg utilization over the course of the test
@@ -54,6 +56,7 @@ def stress_gpu_with_monitoring(handle, duration_seconds=60):
 
     return {
         "timestamp": datetime.utcnow().isoformat(),
+        "baseline_temp":baseline_temp,
         "max_temp": max_temp,
         "max_power": max_power,
         "utilization": last_util,
