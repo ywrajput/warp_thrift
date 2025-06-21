@@ -8,7 +8,7 @@ def run_full_diagnostic(index=0, duration=30):
     handle = pynvml.nvmlDeviceGetHandleByIndex(index)
 
     # Step 1: Get GPU metadata
-    gpu_info = get_gpu_info(handle)
+    gpu_info = get_gpu_baseline_info(handle)
 
     # Step 2: Stress test with monitoring
     telemetry = stress_gpu_with_monitoring(handle, duration)
